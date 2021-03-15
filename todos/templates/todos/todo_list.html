@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Мои дела{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <ul class="nav nav-pills nav-fill">
+        <li class="nav-item">
+            <a class="nav-link{% if not category %} active{% endif %}" aria-current="page" href="{% url 'todos:todo_list' %}">Все дела</a>
+        </li>
+        {% for c in categories %}
+        <li class="nav-item">
+            <a class="nav-link{% if category.id == c.id %} active{% endif %}" href="/{{ c.id }}/">{{ c.name }}</a>
+        </li>
+        {% endfor %}      
+  </ul>
+</div>
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Название</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Категория</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for todo in todos %}
+            <form action="." method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="todo_id" value="{{ todo.id }}">
+                <tr class="{% if todo.completed %}table-success{% else %}table-danger{% endif %}">
+                    <th scope="row">{{ todo.id }}</th>
+                    <td>{{ todo.title }}</td>
+                    <td>{{ todo.description }}</td>
+                    <td>{{ todo.category }}</td>
+                    <td><button type="submit" class="btn btn-warning">{% if todo.completed %}Не выполнил{% else %}Выполнил{% endif %}</button></td>
+                </tr>
+            </form>
+            {% endfor%}
+
+        
+        </tbody>
+      </table>
+</div>
+{% endblock %}
