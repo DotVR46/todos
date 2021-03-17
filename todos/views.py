@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, ToDo
+from .forms import ToDoForm
 
 
 # Create your views here.
@@ -20,6 +21,21 @@ def todo_list(request, category_id=None):
                 {'category': category,
                 'categories': categories,
                 'todos': todos})
+
+def create(request):
+    form = ToDoForm()
+    if request.method == 'POST':
+        form = ToDoForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            todo = ToDo(title=cd['title'],
+                        description=cd['description'],
+                        category=cd['category'])
+            todo.save()
+        return redirect('/')
+
+    return render(request, 'todos/create.html', {'create_form': form})
+
 
 
 

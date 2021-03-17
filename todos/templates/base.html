@@ -8,7 +8,23 @@
         <title>{% block title %}Мои дела{% endblock %}</title>
     </head>
     <body>
-        <div>
+        <div class="row">
+            <div class="col-1">
+                <div class="container">
+                    {% include "includes/side_menu.html" %}
+                </div>
+            </div>
+            <div class="col-11">
+            <div class="container">
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{% url 'todos:todo_list' %}" role="button" aria-expanded="false">Дела</a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{% url 'todos:create_todo' %}">Добавить</a></li>
+                        </ul>
+                      </li>        
+                  </ul>
+            </div>
             {% block content %}
             {% endblock %}
         </div>

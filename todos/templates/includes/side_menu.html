@@ -1,0 +1,11 @@
+<ul class="nav flex-column">
+    <li class="nav-item">
+        <a class="nav-link{% if not category %} active{% endif %}" aria-current="page" href="{% url 'todos:todo_list' %}">Все дела</a>
+    </li>
+    {% for c in categories %}
+    <li class="nav-item">
+        <a class="nav-link{% if category.id == c.id %} active{% endif %}" href="/{{ c.id }}/">{{ c.name }}</a>
+    </li>
+    {% endfor %}      
+</ul>
+

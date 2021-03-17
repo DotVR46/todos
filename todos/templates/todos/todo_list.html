@@ -4,18 +4,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <ul class="nav nav-pills nav-fill">
-        <li class="nav-item">
-            <a class="nav-link{% if not category %} active{% endif %}" aria-current="page" href="{% url 'todos:todo_list' %}">Все дела</a>
-        </li>
-        {% for c in categories %}
-        <li class="nav-item">
-            <a class="nav-link{% if category.id == c.id %} active{% endif %}" href="/{{ c.id }}/">{{ c.name }}</a>
-        </li>
-        {% endfor %}      
-  </ul>
-</div>
+
 <div class="container">
     <table class="table">
         <thead>
@@ -45,5 +34,6 @@
         
         </tbody>
       </table>
+</div>
 </div>
 {% endblock %}
