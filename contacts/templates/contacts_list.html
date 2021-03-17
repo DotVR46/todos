@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Контакты{% endblock %}
+{% block content %}
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            
+            <th scope="col">Имя</th>
+            <th scope="col">Телефон</th>
+            <th scope="col">Email</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+            
+                    
+                    <td>{{ contact.name }}</td>
+                    <td>{{ contact.tel_number  }}</td>
+                    <td>{{ contact.email }}</td>
+                    
+                </tr>
+            
+            {% endfor%}
+
+        
+        </tbody>
+      </table>
+</div>
+</div>
+{% endblock %}

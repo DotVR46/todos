@@ -17,12 +17,14 @@
             <div class="col-11">
             <div class="container">
                 <ul class="nav nav-pills nav-fill">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{% url 'todos:todo_list' %}" role="button" aria-expanded="false">Дела</a>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="{% url 'todos:create_todo' %}">Добавить</a></li>
-                        </ul>
-                      </li>        
+                    
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'todos:todo_list' %}">Дела</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacts:contacts_list' %}">Контакты</a>
+                      </li>
+                             
                   </ul>
             </div>
             {% block content %}
